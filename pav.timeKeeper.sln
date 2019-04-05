@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pav.timeKeeper.mobile", "pa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{079584A9-76CE-4B4A-9423-14AA6758EEEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pav.timeKeeper.tests", "pav.timeKeeper.tests\pav.timeKeeper.tests.csproj", "{B89C1E75-1995-4A0F-8A17-DB3BF4047CC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pav.timeKeeper.tests", "pav.timeKeeper.tests\pav.timeKeeper.tests.csproj", "{B89C1E75-1995-4A0F-8A17-DB3BF4047CC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

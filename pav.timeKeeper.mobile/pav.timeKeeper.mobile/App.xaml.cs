@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using pav.timeKeeper.mobile.Views;
+using System.Threading.Tasks;
+using pav.timeKeeper.mobile.Services.Interfaces;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace pav.timeKeeper.mobile
@@ -12,13 +15,19 @@ namespace pav.timeKeeper.mobile
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            Bootstraper.Intit();
         }
 
-        protected override void OnStart()
+        private Task InitNavigation()
+        {
+            var navigationService = Bootstraper.container.Resolve<INavigationService>();
+            return navigationService.InitializeAsync();
+        }
+
+        protected override async void OnStart()
         {
             // Handle when your app starts
+            await InitNavigation();
         }
 
         protected override void OnSleep()

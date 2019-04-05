@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:pav.timeKeeper.mobile"
+             x:Class="pav.timeKeeper.mobile.Views.ProjectPage"
+             Visual="Material"
+             x:Name="ProjectPageName"
+             local:Bootstraper.AutoWireViewModel="True">
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="{StaticResource ContrastColor}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Backgorund}"/>
+            <Setter Property="PlaceholderColor" Value="{StaticResource BackgroundContrast}"/>
+        </Style>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Entry Placeholder="Client name" Grid.Row="0" Margin="10,5" />
+            <Entry Placeholder="Project name" Grid.Row="1" Margin="10,5" />
+
+<StackLayout Grid.Row="2" Orientation="Horizontal" Margin="10,5">
+    <Entry Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" 
+        HorizontalOptions="FillAndExpand" />
+    <Button Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" 
+        BackgroundColor="{StaticResource ContrastColor}" 
+        TextColor="{StaticResource Backgorund}" 
+        Command="{Binding AddTaskCommand}" />
+</StackLayout>
+            <ListView Grid.Row="3" ItemsSource="{Binding Project.Tasks, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem 
+                                    Command="{Binding  Path=BindingContext.DeleteTaskCommand, Source={x:Reference Name=ProjectPageName}}"   
+                                    CommandParameter="{Binding . }"
+                                    Text="Delete" IsDestructive="True" />
+                          
+                            </ViewCell.ContextActions>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"/>
+                                <Switch  IsToggled="{Binding Billable, Mode=TwoWay}"/>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            
+            </ListView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

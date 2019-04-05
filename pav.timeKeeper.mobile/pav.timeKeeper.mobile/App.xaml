@@ -4,8 +4,11 @@
              x:Class="pav.timeKeeper.mobile.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Style TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#232323"/>
+            <Color x:Key="BackgroundContrast">#8E2929</Color>
+            <Color x:Key="Backgorund">#232323</Color>
+            <Color x:Key="ContrastColor">#FF9900</Color>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource Backgorund}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

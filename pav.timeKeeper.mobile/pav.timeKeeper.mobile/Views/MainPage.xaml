@@ -3,14 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:pav.timeKeeper.mobile"
              Visual="Material"
+             local:Bootstraper.AutoWireViewModel="True"
              x:Class="pav.timeKeeper.mobile.Views.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Entry Placeholder="Clinet Name"/>
-    </StackLayout>
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding ActiveProject.ProjectName, Mode=OneWay}"/>
+
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <FlexLayout Grid.ColumnSpan="3"/>
+
+        <FlexLayout AlignContent="Stretch" Grid.Row="2" Grid.ColumnSpan="3" 
+                    BackgroundColor="{StaticResource BackgroundContrast}"/>
+        
+  
+            <Button
+                 Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+              Command="{Binding CreateProjectCommand}"
+                HorizontalOptions="Center" VerticalOptions="Center"
+                CornerRadius="25" WidthRequest="50" HeightRequest="50" 
+                FontSize="Large" TextColor="{StaticResource Backgorund}" Text="+"  
+                BackgroundColor="{StaticResource ContrastColor}" 
+                BorderWidth="10" BorderColor="{StaticResource Backgorund}"  />
+   
+        
+    </Grid>
+
 
 </ContentPage>
