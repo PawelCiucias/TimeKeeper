@@ -2,6 +2,7 @@
 <resources>
 
   <style name="MainTheme" parent="MainTheme.Base">
+ 
   </style>
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -22,9 +23,13 @@
     <item name="windowActionModeOverlay">true</item>
     <item name="android:actionBarSize">150dp</item>
     <item name="android:statusBarColor">@color/splash_background</item>
+    <item name="android:navigationBarColor">@color/splash_background</item>
+    <!--<item name="android:navigationColor">@color/colorAccent</item>-->
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    
   </style>
 
+  
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#FF4081</item>
   </style>
@@ -34,5 +39,9 @@
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
   </style>
+
+
   
+  
+
 </resources>

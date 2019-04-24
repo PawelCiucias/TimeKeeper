@@ -12,12 +12,13 @@ namespace pav.timeKeeper.mobile
 {
     public partial class App : Application
     {
-        public App()
+        public App(string databasePath)
         {
+         
             InitializeComponent();
-            Bootstraper.Intit();
+            Bootstraper.Intit(databasePath);
         }
-
+        
         private Task InitNavigation()
         {
             var navigationService = Bootstraper.container.Resolve<INavigationService>();

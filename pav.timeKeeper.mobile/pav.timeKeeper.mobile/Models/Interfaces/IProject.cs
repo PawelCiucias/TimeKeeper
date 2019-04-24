@@ -7,8 +7,9 @@ namespace pav.timeKeeper.mobile.Models.Interfaces
 {
     interface IProject
     {
+        Guid Id { get; }
         string ClientName { get; set; }
         string ProjectName { get; set; }
-        ICollection<IProjectTask> Tasks { get; }
+        IList<IProjectTask> Tasks { get; set; }
     }
 }

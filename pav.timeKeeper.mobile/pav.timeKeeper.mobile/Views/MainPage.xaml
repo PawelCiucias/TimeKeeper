@@ -38,6 +38,7 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
+
             <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large"/>
             <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large"/>
 
@@ -53,6 +54,12 @@
                     CornerRadius="25" WidthRequest="50" HeightRequest="50" FontSize="Large" FontAttributes="Bold" />
             <!--<Label Grid.Row="2" Grid.Column="1" 
                     Font="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" />-->
+
+
+
+
+
+
         </Grid>
     </NavigationPage.TitleView>
 

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using pav.timeKeeper.mobile.Data;
 using pav.timeKeeper.mobile.Services;
 using pav.timeKeeper.mobile.Services.Interfaces;
 using pav.timeKeeper.mobile.ViewModels;
@@ -16,25 +17,25 @@ namespace pav.timeKeeper.mobile
     {
         internal static IContainer container;
 
-        internal static void Intit() {
+        internal static void Intit(string databasePath) {
             var builder = new ContainerBuilder();
 
             builder.RegisterType<MainPageViewModel>().As<IMainPageViewModel>();
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<ProjectPageViewModel>().As<IProjectPageViewModel>();
+            builder.RegisterType<Database>().As<IDataRepository>().SingleInstance().WithParameter(new TypedParameter(typeof(string), databasePath));
 
             container = builder.Build();
         }
 
 
+        #region Auto wire view models
         public static readonly BindableProperty AutoWireViewModelProperty =
-           BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool), typeof(Bootstraper), default(bool), propertyChanged: OnAutoWireViewModelChanged);
+         BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool), typeof(Bootstraper), default(bool), propertyChanged: OnAutoWireViewModelChanged);
 
-        public static bool GetAutoWireViewModel(BindableObject bindable)
-            => (bool)bindable.GetValue(Bootstraper.AutoWireViewModelProperty);
+        public static bool GetAutoWireViewModel(BindableObject bindable) => (bool)bindable.GetValue(Bootstraper.AutoWireViewModelProperty);
 
-        public static void SetAutoWireViewModel(BindableObject bindable, bool value)
-            => bindable.SetValue(Bootstraper.AutoWireViewModelProperty, value);
+        public static void SetAutoWireViewModel(BindableObject bindable, bool value) => bindable.SetValue(Bootstraper.AutoWireViewModelProperty, value);
 
         private static void OnAutoWireViewModelChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -53,6 +54,7 @@ namespace pav.timeKeeper.mobile
 
             var viewModel = Bootstraper.container.Resolve(viewModelType);
             view.BindingContext = viewModel;
-        }
+        } 
+        #endregion
     }
 }

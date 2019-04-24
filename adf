@@ -1,0 +1,50 @@
+[1mdiff --cc pav.timeKeeper.mobile/pav.timeKeeper.mobile/Views/MainPage.xaml[m
+[1mindex a841c9e,dd3e19c..0000000[m
+[1m--- a/pav.timeKeeper.mobile/pav.timeKeeper.mobile/Views/MainPage.xaml[m
+[1m+++ b/pav.timeKeeper.mobile/pav.timeKeeper.mobile/Views/MainPage.xaml[m
+[36m@@@ -37,22 -37,27 +37,45 @@@[m
+                  <ColumnDefinition Width="*"/>[m
+                  <ColumnDefinition Width="50"/>[m
+              </Grid.ColumnDefinitions>[m
+[32m++<<<<<<< HEAD[m
+[32m++=======[m
+[32m+ [m
+[32m+             <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large"/>[m
+[32m+             <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large"/>[m
+[32m+ [m
+[32m+             <Picker x:Name="Task_DDL" Grid.Row="2" Title="Tasks" [m
+[32m+                     ItemsSource = "{Binding SelectedTasks}" TextColor="{StaticResource ContrastColor}"[m
+[32m+                     SelectedIndex="{Binding SelectedTaskIndex}"[m
+[32m+                     eff:PaddingEffect.Padding = "-44"[m
+[32m+                     eff:FocusEffect.BackgroundColor = "{StaticResource BackgroundContrast}"  />[m
+[32m+ [m
+[32m+             <Button Grid.Row="2" Grid.Column="1" TextColor="{StaticResource ContrastColor}" [m
+[32m+                     Command="{Binding StartActiveProjectCommand}"[m
+[32m+                     FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" [m
+[32m+                     CornerRadius="25" WidthRequest="50" HeightRequest="50" FontSize="Large" FontAttributes="Bold" />[m
+[32m+             <!--<Label Grid.Row="2" Grid.Column="1" [m
+[32m+                     Font="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" />-->[m
+[32m+ [m
+[32m+ [m
+[32m+ [m
+[32m+ [m
+[32m++>>>>>>> bottomappbar[m
+  [m
+[32m +            <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large"/>[m
+[32m +            <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large"/>[m
+[32m +[m
+[32m +            <Picker x:Name="Task_DDL" Grid.Row="2" Title="Tasks" [m
+[32m +                    ItemsSource = "{Binding SelectedTasks}" TextColor="{StaticResource ContrastColor}"[m
+[32m +                    SelectedIndex="{Binding SelectedTaskIndex}"[m
+[32m +                    eff:PaddingEffect.Padding = "-44"[m
+[32m +                    eff:FocusEffect.BackgroundColor = "{StaticResource BackgroundContrast}"  />[m
+[32m +[m
+[32m +            <Button Grid.Row="2" Grid.Column="1" TextColor="{StaticResource ContrastColor}" [m
+[32m +                    Command="{Binding StartActiveProjectCommand}"[m
+[32m +                    FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" [m
+[32m +                    CornerRadius="25" WidthRequest="50" HeightRequest="50" FontSize="Large" FontAttributes="Bold" />[m
+[32m +            <!--<Label Grid.Row="2" Grid.Column="1" [m
+[32m +                    Font="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" />-->[m
+          </Grid>[m
+      </NavigationPage.TitleView>[m
+  [m

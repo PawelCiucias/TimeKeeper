@@ -1,4 +1,5 @@
 ﻿using pav.timeKeeper.mobile.Models.Interfaces;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,24 +7,33 @@ using System.Text;
 
 namespace pav.timeKeeper.mobile.Models
 {
+    [Table("table_project")]
     class Project : BaseModel, IProject
     {
+        [PrimaryKey, Unique]
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+
         string clientName = null;
-        public string ClientName {
-            get => clientName ?? "Client Name";
+        [MaxLength(100), NotNull]
+        public string ClientName
+        {
+            get => clientName;
             set => base.SetProperty(ref clientName, value);
         }
+
         string projectName = null;
-        public string ProjectName {
-            get => projectName ?? "Project name";
+        [MaxLength(100), NotNull]
+        public string ProjectName
+        {
+            get => projectName;
             set => base.SetProperty(ref projectName, value);
         }
 
-        public ICollection<IProjectTask> Tasks { get; }
+        [Ignore]
+        public IList<IProjectTask> Tasks { get; set;  }
 
-        public Project()
-        {
-            Tasks = new ObservableCollection<IProjectTask>();
-        }
+        public Project() => Tasks = new ObservableCollection<IProjectTask>();
+
     }
 }
