@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:pav.timeKeeper.mobile"
+             xmlns:widgets="clr-namespace:pav.timeKeeper.mobile.Widgets"
              x:Class="pav.timeKeeper.mobile.Views.ProjectPage"
+             
              Visual="Material"
              x:Name="ProjectPageName"
+             
              local:Bootstraper.AutoWireViewModel="True">
     <ContentPage.Resources>
         <Style TargetType="Entry">
@@ -12,29 +15,35 @@
             <Setter Property="BackgroundColor" Value="{StaticResource Backgorund}"/>
             <Setter Property="PlaceholderColor" Value="{StaticResource BackgroundContrast}"/>
         </Style>
-        
+
     </ContentPage.Resources>
-    <ContentPage.Content>
+
+    <NavigationPage.TitleView>
+        <Label Text="Create project" LineBreakMode="NoWrap"/>
+    </NavigationPage.TitleView>
+        <ContentPage.Content>
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
-            <Entry Placeholder="Client name" Grid.Row="0" Margin="10,5" />
-            <Entry Placeholder="Project name" Grid.Row="1" Margin="10,5" />
+            <Entry x:Name="ClientName_ENTRY" Placeholder="Client name" Text="{Binding ClientName}" ReturnType="Next" TabIndex="0"  Margin="10,5" />
+            <Entry x:Name="ProjectName_ENTRY" Placeholder="Project name" Text="{Binding ProjectName}" ReturnType="Next" TabIndex="1" Grid.Row="1" Margin="10,5" />
 
-<StackLayout Grid.Row="2" Orientation="Horizontal" Margin="10,5">
-    <Entry Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" 
-        HorizontalOptions="FillAndExpand" />
-    <Button Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" 
-        BackgroundColor="{StaticResource ContrastColor}" 
-        TextColor="{StaticResource Backgorund}" 
-        Command="{Binding AddTaskCommand}" />
-</StackLayout>
-            <ListView Grid.Row="3" ItemsSource="{Binding Project.Tasks, Mode=TwoWay}">
+            <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="10,5">
+                <Entry x:Name="TaskName_ENTRY" Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" TabIndex="2" HorizontalOptions="FillAndExpand" />
+                <Button Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" 
+                        BackgroundColor="{StaticResource ContrastColor}" 
+                        TextColor="{StaticResource Backgorund}" 
+                        Command="{Binding AddTaskCommand}" />
+            </StackLayout>
+            
+            <ListView Grid.Row="3" ItemsSource="{Binding Project.Tasks, Mode=TwoWay}" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -43,20 +52,20 @@
                                     Command="{Binding  Path=BindingContext.DeleteTaskCommand, Source={x:Reference Name=ProjectPageName}}"   
                                     CommandParameter="{Binding . }"
                                     Text="Delete" IsDestructive="True" />
-                          
+
                             </ViewCell.ContextActions>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"/>
+                            <StackLayout Margin="10,5" Orientation="Horizontal">
+                                <Label Text="{Binding Name}" FontSize="Large" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ContrastColor}"/>
                                 <Switch  IsToggled="{Binding Billable, Mode=TwoWay}"/>
                             </StackLayout>
-                            
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            
-            </ListView>
 
+            </ListView>
+            <widgets:BottomAppBar Grid.Row="4" HeroSource="save.png" HeroCommand="{Binding SaveProjectCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

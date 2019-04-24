@@ -3,8 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pav.timeKeeper.mobile.Widgets.BottomAppBar">
   <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}"/>
+            <ImageButton x:Name="Hero_IMAGEBUTTON" 
+                         Grid.Column="1" Grid.RowSpan="2" 
+                         HorizontalOptions="Center" VerticalOptions="Center"
+                         BackgroundColor="{StaticResource ContrastColor}"
+                         BorderColor="{StaticResource Backgorund}" BorderWidth="1"
+                         CornerRadius="25" WidthRequest="50" HeightRequest="50">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource ContrastColor}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#3C311E"/>
+                                <Setter Property="Source" Value="disabledsave.png"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                
+            </ImageButton>
+        </Grid>
   </ContentView.Content>
 </ContentView>

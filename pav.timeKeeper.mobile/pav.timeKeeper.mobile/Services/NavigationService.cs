@@ -26,7 +26,10 @@ namespace pav.timeKeeper.mobile.Services
             //if (string.IsNullOrEmpty(_settingsService.AuthAccessToken))
             //    return NavigateToAsync<LoginViewModel>();
             //else
+
+         
                 return NavigateToAsync<MainPageViewModel>();
+   
         }
     
 

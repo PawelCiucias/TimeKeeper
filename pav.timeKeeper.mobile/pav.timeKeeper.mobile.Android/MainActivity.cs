@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using pav.timeKeeper.mobile.Droid.Helpers;
 
 namespace pav.timeKeeper.mobile.Droid
 {
@@ -16,13 +17,20 @@ namespace pav.timeKeeper.mobile.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            string dbPath = FileAccessHelper.GetLocalFilePath("projects.db3");
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            FormsMaterial.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            
+           
+           // FormsMaterial.Init(this, savedInstanceState);
+            
+            LoadApplication(new App(dbPath));
         }
     }
 }

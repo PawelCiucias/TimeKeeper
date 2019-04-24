@@ -13,5 +13,6 @@ namespace pav.timeKeeper.mobile.ViewModels.Interfaces
 
         ICommand AddTaskCommand { get; }
         ICommand SaveProjectCommand { get; }
+        ICommand DeleteTaskCommand { get;  }
     }
 }

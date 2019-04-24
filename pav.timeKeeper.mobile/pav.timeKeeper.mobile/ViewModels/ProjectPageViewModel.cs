@@ -1,9 +1,9 @@
-﻿using pav.timeKeeper.mobile.Models;
+﻿using Autofac;
+using pav.timeKeeper.mobile.Data;
+using pav.timeKeeper.mobile.Models;
 using pav.timeKeeper.mobile.Models.Interfaces;
 using pav.timeKeeper.mobile.ViewModels.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,8 +11,35 @@ namespace pav.timeKeeper.mobile.ViewModels
 {
     class ProjectPageViewModel : ViewModelBase, IProjectPageViewModel
     {
+        IDataRepository repo;
+
         public IProject Project { get; set; } = new Project();
 
+        string clientName;
+        public string ClientName {
+            get => clientName;
+            set {
+                if (base.SetProperty(ref clientName, value))
+                {
+                    Project.ClientName = clientName;
+                    ((Command)SaveProjectCommand).ChangeCanExecute();
+                }
+
+            }
+        }
+
+        private string projectName;
+        public string ProjectName
+        {
+            get => projectName;
+            set {
+                if (base.SetProperty(ref projectName, value))
+                {
+                    Project.ProjectName = projectName;
+                    ((Command)SaveProjectCommand).ChangeCanExecute();
+                }
+            }
+        }
 
 
         string taskName;
@@ -33,19 +60,37 @@ namespace pav.timeKeeper.mobile.ViewModels
             {
                 this.addTaskCommand = this.addTaskCommand ?? new Command(
                     execute: () => {
-                        Project.Tasks.Add(new ProjectTask(TaskName));
+                        Project.Tasks.Add(new ProjectTask(TaskName, Project.Id));
                         TaskName = string.Empty; },
-                    canExecute: () => !String.IsNullOrEmpty(TaskName));
+                    canExecute: () => !String.IsNullOrEmpty(TaskName) && TaskName.Length > 3);
 
                 return addTaskCommand;
             }
         }
 
-        public ICommand SaveProjectCommand => throw new NotImplementedException();
+        ICommand saveProjectCommand;
+        public ICommand SaveProjectCommand {
+            get {
 
-        public ICommand DeleteTaskCommand => new Command<IProjectTask>(pt => Project.Tasks.Remove(pt));
+                return this.saveProjectCommand ?? (this.saveProjectCommand = new Command(
+                     execute: async () => {
+                         await repo.CreateProjectAsync(Project);
+                         await repo.CreateProjectTasksAsync(Project.Tasks);
+                     },
+                     canExecute: () =>
+!(String.IsNullOrEmpty(ClientName) || string.IsNullOrEmpty(ProjectName))
+                    ));
 
+                
+            }
+        }
 
-        //
+        ICommand deleteTaskCommand;
+        public ICommand DeleteTaskCommand => deleteTaskCommand = deleteTaskCommand ?? new Command<IProjectTask>(pt => Project.Tasks.Remove(pt));
+
+        public ProjectPageViewModel()
+        {
+          repo=  Bootstraper.container.Resolve<IDataRepository>();
+        }
     }
 }

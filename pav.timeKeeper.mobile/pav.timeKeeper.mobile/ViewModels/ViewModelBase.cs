@@ -12,7 +12,7 @@ namespace pav.timeKeeper.mobile.ViewModels
     abstract class ViewModelBase : INotifyPropertyChanged
     {
         protected INavigationService navigationService;
-
+        
         public ViewModelBase() { 
             navigationService = Bootstraper.container.Resolve<INavigationService>();
         }
