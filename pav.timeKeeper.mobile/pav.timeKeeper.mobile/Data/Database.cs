@@ -86,5 +86,13 @@ namespace pav.timeKeeper.mobile.Data
             
             return false;
         }
+
+        public async Task<IEnumerable<IActionableTask>> ReadAllActionableTasksAsync()
+        {
+            if (await TableExistsAsync(Constants.table_ActionableTask))
+                return await connection.QueryAsync<ActionableTask>($"SELECT * FROM {Constants.table_ActionableTask}");
+
+            return null;
+        }
     }
 }

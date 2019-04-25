@@ -26,6 +26,9 @@
             <x:String x:Key="awesome.save">&#xf0c7;</x:String>
             <x:String x:Key="awesome.settings">&#xf013;</x:String>
             <x:String x:Key="awesome.graph">&#xf200;</x:String>
+            <x:String x:Key="awesome.day">&#xf783;</x:String>
+            <x:String x:Key="awesome.week">&#xf784;</x:String>
+            <x:String x:Key="awesome.month">&#xf133;</x:String>
 
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">

@@ -15,6 +15,8 @@ namespace pav.timeKeeper.mobile.Data
         Task<IProject> ReadProjectAsync(Guid id);
         Task<IEnumerable<IProjectTask>> ReadProjectTasks(Guid projectId);
         Task<IEnumerable<IProject>> ReadProjectsAsync();
+        Task<IEnumerable<IActionableTask>> ReadAllActionableTasksAsync();
+
         Task<bool> UpdateProjectAsync(IProject project);
         Task<bool> UpdateActionableTaskAsync(IActionableTask actionableTask);
         Task<bool> DeleteProjectAsync(Guid id);

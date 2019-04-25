@@ -91,6 +91,15 @@ namespace pav.timeKeeper.mobile.ViewModels
                     canExecute: ()=> SelectedTaskIndex > -1);
         }
 
+
+        private ICommand viewReportsCommand;
+
+        public ICommand ViewReportsCommand
+        {
+            get => viewReportsCommand = viewReportsCommand ?? new Command(async ()=>  await base.navigationService.NavigateToAsync<ReportsPageViewModel>());
+        }
+
+
         public MainPageViewModel()
         {
            repo = Bootstraper.container.Resolve<IDataRepository>();
