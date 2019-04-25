@@ -1,4 +1,5 @@
-﻿using pav.timeKeeper.mobile.ViewModels;
+﻿using pav.timeKeeper.mobile.Core;
+using pav.timeKeeper.mobile.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,29 +14,41 @@ namespace pav.timeKeeper.mobile.Views
         public MainPage()
         {
             InitializeComponent();
-            
+
+          
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            if(sender is Button btn)
+            {
+                var startColor = btn.TextColor;
+                await Task.WhenAll(
+                    btn.ColorTo(startColor, Color.White, c => btn.TextColor = c),
+                    btn.ColorTo(Color.White, startColor, c => btn.TextColor = c));
+            }
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
+            Settings_BTN.Clicked += Button_Clicked;
+            Graphs_BTN.Clicked += Button_Clicked;
             var pageVm = this.BindingContext as MainPageViewModel;
 
             if (pageVm != null)
             {
-              await  pageVm.PopulateProjects();
+                await  pageVm.PopulateProjects();
             }
         }
 
-        private void Task_DDL_SelectedIndexChanged(object sender, EventArgs e)
+        protected override void OnDisappearing()
         {
-
+            base.OnDisappearing();
+            Settings_BTN.Clicked -= Button_Clicked;
+            Graphs_BTN.Clicked -= Button_Clicked;
         }
 
-        private void Task_DDL_Focused(object sender, FocusEventArgs e)
-        {
-
-        }
     }
 }

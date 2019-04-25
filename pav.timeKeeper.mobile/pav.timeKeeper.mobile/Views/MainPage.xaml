@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:pav.timeKeeper.mobile"
              xmlns:eff="clr-namespace:pav.timeKeeper.mobile.Effects"
+             xmlns:con="clr-namespace:pav.timeKeeper.mobile.Converters"
+             xmlns:custom="clr-namespace:pav.timeKeeper.mobile.Controls"
              Visual="Material"
              local:Bootstraper.AutoWireViewModel="True"
              x:Class="pav.timeKeeper.mobile.Views.MainPage">
 
     <ContentPage.Resources>
+        <con:NullToVisibilityConverter x:Key="NullToBooleanConverter" />
         <Style TargetType="Frame">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -16,7 +19,7 @@
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-                                        Value="{StaticResource ContrastColor}" />
+                                        Value="{StaticResource  ContrastColor}" />
                                 <Setter Property="CornerRadius" Value="0"/>
                             </VisualState.Setters>
                         </VisualState>
@@ -42,7 +45,8 @@
             <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large"/>
             <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large"/>
 
-            <Picker x:Name="Task_DDL" Grid.Row="2" Title="Tasks" 
+            <!--<Label Grid.Row="2" Text="please select a task" FontSize="Large" TextColor="{StaticResource ContrastColor}" VerticalTextAlignment="Center" VerticalOptions="Fill" />-->
+            <Picker x:Name="Task_DDL" Grid.Row="2" Title="Tasks"  IsVisible="{Binding SelectedProject, Converter={StaticResource NullToBooleanConverter}}"
                     ItemsSource = "{Binding SelectedTasks}" TextColor="{StaticResource ContrastColor}"
                     SelectedIndex="{Binding SelectedTaskIndex}"
                     eff:PaddingEffect.Padding = "-44"
@@ -52,20 +56,11 @@
                     Command="{Binding StartActiveProjectCommand}"
                     FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" 
                     CornerRadius="25" WidthRequest="50" HeightRequest="50" FontSize="Large" FontAttributes="Bold" />
-            <!--<Label Grid.Row="2" Grid.Column="1" 
-                    Font="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" />-->
-
-
-
-
-
-
         </Grid>
     </NavigationPage.TitleView>
 
     <Grid Padding="0,5,0,0">
         <Grid.RowDefinitions>
-
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -85,7 +80,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" BackgroundColor="{StaticResource Backgorund}" HasShadow="False" CornerRadius="0" >
+                    <Frame Padding="10" BackgroundColor="{StaticResource Background}" HasShadow="False" CornerRadius="0" >
                         
                             
                         <Grid  Padding="5" BackgroundColor="{StaticResource BackgroundContrast}" >
@@ -104,16 +99,41 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Frame Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}"/>
+        
+
+
+       
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <custom:FlatButton  x:Name="Settings_BTN"
+                FontSize="Large" TextColor="{StaticResource ContrastColor}"
+                HorizontalOptions="Start" MinimumWidthRequest="0"
+                FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.settings}" />
+
+            <custom:FlatButton  x:Name="Graphs_BTN" Grid.Column="4"
+                FontSize="Large" TextColor="{StaticResource ContrastColor}"
+                HorizontalOptions="End" MinimumWidthRequest="0"
+                FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.graph}" />
+        </Grid>
 
 
         <Button Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+                
                 Command="{Binding CreateProjectCommand}"
                 HorizontalOptions="Center" VerticalOptions="Center"
                 CornerRadius="25" WidthRequest="50" HeightRequest="50" 
-                Text="+" TextColor="{StaticResource Backgorund}"   FontSize="Large"
+                Text="+" TextColor="{StaticResource Background}"   FontSize="Large"
                 BackgroundColor="{StaticResource ContrastColor}" 
-                BorderWidth="10" BorderColor="{StaticResource Backgorund}"  />
+                BorderWidth="10" BorderColor="{StaticResource Background}"  />
+
     </Grid>
 
 

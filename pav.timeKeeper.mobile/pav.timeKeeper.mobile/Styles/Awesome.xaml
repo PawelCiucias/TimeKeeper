@@ -11,4 +11,7 @@
 
     <!--chars-->
     <x:String x:Key="awesome.play">&#xf04b;</x:String>
+    <x:String x:Key="awesome.save">&#xf0c7;</x:String>
+    <x:String x:Key="awesome.settings">&#xf013;</x:String>
+    
 </ResourceDictionary>

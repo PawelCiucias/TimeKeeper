@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:pav.timeKeeper.mobile.Effects"
              x:Class="pav.timeKeeper.mobile.Widgets.BottomAppBar">
   <ContentView.Content>
         <Grid>
@@ -21,7 +22,7 @@
                          Grid.Column="1" Grid.RowSpan="2" 
                          HorizontalOptions="Center" VerticalOptions="Center"
                          BackgroundColor="{StaticResource ContrastColor}"
-                         BorderColor="{StaticResource Backgorund}" BorderWidth="1"
+                         BorderColor="{StaticResource Background}" BorderWidth="1"
                          CornerRadius="25" WidthRequest="50" HeightRequest="50">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
@@ -41,6 +42,10 @@
                 </VisualStateManager.VisualStateGroups>
                 
             </ImageButton>
+            <Button Grid.Row="1" BorderWidth="0" BorderColor="Transparent" WidthRequest="50"  
+                    BackgroundColor="Transparent" HorizontalOptions="Start"
+                    effects:ShadowColorEffect.ShadowColor="Transparent"
+                    FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.settings}" />
         </Grid>
   </ContentView.Content>
 </ContentView>

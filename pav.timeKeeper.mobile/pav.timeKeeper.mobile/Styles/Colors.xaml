@@ -4,7 +4,7 @@
                     x:Class="pav.timeKeeper.mobile.Styles.Colors">
   
     <Color x:Key="BackgroundContrast">#8E2929</Color>
-    <Color x:Key="Backgorund">#232323</Color>
+    <Color x:Key="Background">#232323</Color>
     <Color x:Key="ContrastColor">#FF9900</Color>
     <Color x:Key="Transparent">#00FF0066</Color>
 </ResourceDictionary>

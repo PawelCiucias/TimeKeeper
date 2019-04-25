@@ -4,6 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="pav.timeKeeper.mobile.Views.CustomNavigationView"    
     BarBackgroundColor="{StaticResource  BackgroundContrast}"
-    BarTextColor="{StaticResource Backgorund}"
+    BarTextColor="{StaticResource Background}"
     BackgroundColor="Transparent">
 </NavigationPage>

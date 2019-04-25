@@ -5,16 +5,32 @@
              x:Class="pav.timeKeeper.mobile.App">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <styles:Awesome />
                 <styles:Colors />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
             
+            <!--Colors-->
+            <Color x:Key="BackgroundContrast">#8E2929</Color>
+            <Color x:Key="Background">#232323</Color>
+            <Color x:Key="ContrastColor">#FF9900</Color>
+            <Color x:Key="Transparent">#00FF0066</Color>
+
+
+            <!--fonts-->
+            <OnPlatform x:Key="fontAwesomeSolid" x:TypeArguments="x:String" 
+                        Android="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
+
+            <!--chars-->
+            <x:String x:Key="awesome.play">&#xf04b;</x:String>
+            <x:String x:Key="awesome.save">&#xf0c7;</x:String>
+            <x:String x:Key="awesome.settings">&#xf013;</x:String>
+            <x:String x:Key="awesome.graph">&#xf200;</x:String>
+
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="{StaticResource Backgorund}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Background}"/>
             </Style>
-            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

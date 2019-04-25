@@ -8,10 +8,10 @@ namespace pav.timeKeeper.mobile.Effects
 {
     public class FocusEffect : RoutingEffect
     {
-        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.CreateAttached("BackgroundColor", typeof(Color), typeof(Color), Color.Accent, propertyChanged: OnFocusChanged);
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.CreateAttached(nameof(BackgroundColorProperty), typeof(Color), typeof(Color), Color.Accent, propertyChanged: OnFocusChanged);
 
         public static Color GetBackgroundColor(BindableObject view) => (Color)view.GetValue(BackgroundColorProperty);
-        public static void SetBackgorundColor(BindableObject view, Color color) => view.SetValue(BackgroundColorProperty, color);
+        public static void SetBackgroundColor(BindableObject view, Color color) => view.SetValue(BackgroundColorProperty, color);
 
 
         public FocusEffect() : base("pav.FocusEffect") { }

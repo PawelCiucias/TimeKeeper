@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using pav.timeKeeper.mobile.Droid.Effects;
+using pav.timeKeeper.mobile.Effects;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-
-using pav.timeKeeper.mobile.Effects;
-using pav.timeKeeper.mobile.Droid.Effects;
 
 [assembly: ExportEffect(typeof(FocusEffectDroid), nameof(FocusEffect))]
 namespace pav.timeKeeper.mobile.Droid.Effects

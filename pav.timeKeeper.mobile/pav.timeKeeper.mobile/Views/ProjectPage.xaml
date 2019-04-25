@@ -12,7 +12,7 @@
     <ContentPage.Resources>
         <Style TargetType="Entry">
             <Setter Property="TextColor" Value="{StaticResource ContrastColor}" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Backgorund}"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource Background}"/>
             <Setter Property="PlaceholderColor" Value="{StaticResource BackgroundContrast}"/>
         </Style>
 
@@ -39,7 +39,7 @@
                 <Entry x:Name="TaskName_ENTRY" Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" TabIndex="2" HorizontalOptions="FillAndExpand" />
                 <Button Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" 
                         BackgroundColor="{StaticResource ContrastColor}" 
-                        TextColor="{StaticResource Backgorund}" 
+                        TextColor="{StaticResource Background}" 
                         Command="{Binding AddTaskCommand}" />
             </StackLayout>
             

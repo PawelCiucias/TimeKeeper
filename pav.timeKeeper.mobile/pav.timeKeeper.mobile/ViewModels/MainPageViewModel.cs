@@ -66,6 +66,7 @@ namespace pav.timeKeeper.mobile.ViewModels
                     if(tasks != null)
                         SelectedProject.Tasks = tasks.ToList();
 
+                    base.NotifyPropertyChanged(nameof(SelectedProject));
                     base.NotifyPropertyChanged(nameof(SelectedClientName));
                     base.NotifyPropertyChanged(nameof(SelectedProjectName));
                     base.NotifyPropertyChanged(nameof(SelectedTasks));
