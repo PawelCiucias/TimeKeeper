@@ -11,7 +11,7 @@ namespace pav.timeKeeper.mobile.Models
     [Table("table_tasks")]
     class ProjectTask : BaseModel, IProjectTask
     {
-        [PrimaryKey, Unique]
+        [PrimaryKey, Unique, MaxLength(7)]
         public Guid Id { get; set; } = Guid.NewGuid();
 
         public Guid ProjectId { get; set; }

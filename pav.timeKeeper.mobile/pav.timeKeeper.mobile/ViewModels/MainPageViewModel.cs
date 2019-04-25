@@ -19,7 +19,7 @@ namespace pav.timeKeeper.mobile.ViewModels
     {
         IDataRepository repo;
         public ObservableCollection<IProject> Projects { get; set; }
-        public IProject ActiveProject { get; set; }
+        public IActionableTask ActiveTask { get; set; }
         public IProject SelectedProject { get; set; }
 
         public string SelectedClientName
@@ -77,7 +77,17 @@ namespace pav.timeKeeper.mobile.ViewModels
         ICommand startActiveProjectCommand;
         public ICommand StartActiveProjectCommand {
             get => startActiveProjectCommand = startActiveProjectCommand ?? 
-                new Command(execute: ()=> { }, 
+                new Command(
+                    execute: async ()=> {
+                        if(ActiveTask != null)
+                        {
+                            ActiveTask.End = DateTime.Now;
+                            await  repo.UpdateActionableTaskAsync(ActiveTask);
+                        }
+
+                        ActiveTask = new ActionableTask(SelectedProject.Id, SelectedProject.Tasks[SelectedTaskIndex].Id);
+                        await repo.CreateActionableTaskAsync(ActiveTask);
+                    }, 
                     canExecute: ()=> SelectedTaskIndex > -1);
         }
 

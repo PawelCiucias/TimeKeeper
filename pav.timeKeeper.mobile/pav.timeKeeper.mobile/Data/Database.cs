@@ -1,4 +1,5 @@
-﻿using pav.timeKeeper.mobile.Models;
+﻿using pav.timeKeeper.mobile.Core;
+using pav.timeKeeper.mobile.Models;
 using pav.timeKeeper.mobile.Models.Interfaces;
 using SQLite;
 using System;
@@ -70,6 +71,20 @@ namespace pav.timeKeeper.mobile.Data
         {
             await connection.CreateTableAsync<ProjectTask>();
             return await connection.InsertAllAsync(Tasks, typeof(ProjectTask)) == Tasks.Count();
+        }
+
+        public async Task<bool> CreateActionableTaskAsync(IActionableTask actionableTask)
+        {
+            await connection.CreateTableAsync<ActionableTask>();
+            return await connection.InsertAsync(actionableTask, typeof(ActionableTask)) == 1;
+        }
+
+        public async Task<bool> UpdateActionableTaskAsync(IActionableTask actionableTask)
+        {
+            if (await TableExistsAsync(Constants.table_ActionableTask))
+               return await connection.UpdateAsync(actionableTask, typeof(ActionableTask)) == 1;
+            
+            return false;
         }
     }
 }

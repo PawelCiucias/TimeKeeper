@@ -8,7 +8,7 @@ namespace pav.timeKeeper.mobile.ViewModels.Interfaces
 {
     interface IMainPageViewModel
     {
-        IProject ActiveProject { get; set; }
+        IActionableTask ActiveTask { get; set; }
 
         ICommand CreateProjectCommand { get; }
     }
