@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:pav.timeKeeper.mobile"
+             xmlns:core="clr-namespace:pav.timeKeeper.mobile.Core"
              xmlns:eff="clr-namespace:pav.timeKeeper.mobile.Effects"
              xmlns:con="clr-namespace:pav.timeKeeper.mobile.Converters"
              xmlns:custom="clr-namespace:pav.timeKeeper.mobile.Controls"
              Visual="Material"
-             local:Bootstraper.AutoWireViewModel="True"
+             core:Bootstraper.AutoWireViewModel="True"
+             x:Name="RootPage"
              x:Class="pav.timeKeeper.mobile.Views.MainPage">
 
     <ContentPage.Resources>
         <con:NullToVisibilityConverter x:Key="NullToBooleanConverter" />
+        <con:HighlightProjectConverter x:Key="BackgroundConverter" ContrastColor="{StaticResource ContrastColor}" NormalColor="{StaticResource BackgroundContrast}" />
+        <con:PlayOrPauseConverter x:Key="PlayOrPauseConverter" />
+        
         <Style TargetType="Frame">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -54,7 +58,8 @@
 
             <Button Grid.Row="2" Grid.Column="1" TextColor="{StaticResource ContrastColor}" 
                     Command="{Binding StartActiveProjectCommand}"
-                    FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.play}" 
+                    FontFamily="{StaticResource fontAwesomeSolid}" 
+                    Text="{Binding ActiveTask,  Converter={StaticResource PlayOrPauseConverter}, ConverterParameter={x:Reference RootPage}}" 
                     CornerRadius="25" WidthRequest="50" HeightRequest="50" FontSize="Large" FontAttributes="Bold" />
         </Grid>
     </NavigationPage.TitleView>
@@ -71,38 +76,36 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <CollectionView Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource ="{Binding Projects}" SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
-                        SelectionChangedCommand="{Binding SelectActiveProjectCommand}"   >
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="3" />
-            </CollectionView.ItemsLayout>
+<CollectionView Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource ="{Binding Projects}" SelectionMode="Single" 
+            SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding SelectActiveProjectCommand}"   >
+    <CollectionView.ItemsLayout>
+        <GridItemsLayout Orientation="Vertical" Span="3" />
+    </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" BackgroundColor="{StaticResource Background}" HasShadow="False" CornerRadius="0" >
-                        
-                            
-                        <Grid  Padding="5" BackgroundColor="{StaticResource BackgroundContrast}" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="35"/>
-                                <RowDefinition Height="35"/>
-                                <RowDefinition Height="35"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="{Binding ClientName}" FontSize="Large"/>
-                            <Label Grid.Row="1" Text="{Binding ProjectName}" FontSize="Large"/>
-                            <Label Grid.Row="2" Text="0.0%" FontSize="Large" HorizontalTextAlignment="End"  VerticalOptions="End" />
-                        </Grid>
-                        
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <Frame Padding="10" BackgroundColor="{StaticResource Background}" HasShadow="False" CornerRadius="0" >
+<Grid  Padding="5" BackgroundColor="{Binding Id, Converter={StaticResource BackgroundConverter}, ConverterParameter= {x:Reference RootPage}}" >
+    <Grid.RowDefinitions>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="35"/>
+    </Grid.RowDefinitions>
+    <Label Grid.Row="0" Text="{Binding ClientName}" FontSize="Large"/>
+    <Label Grid.Row="1" Text="{Binding ProjectName}" FontSize="Large"/>
+    <Label Grid.Row="2" Text="0.0%" FontSize="Large" HorizontalTextAlignment="End"  VerticalOptions="End" />
+</Grid>
 
-        
+            </Frame>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
 
 
-       
+
+
+
 
         <Grid Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}">
             <Grid.ColumnDefinitions>
@@ -115,7 +118,7 @@
             
             <custom:FlatButton  x:Name="Settings_BTN"
                 FontSize="Large" TextColor="{StaticResource ContrastColor}"
-                HorizontalOptions="Start" MinimumWidthRequest="0"
+                HorizontalOptions="Start" MinimumWidthRequest="0" Command="{Binding SettingsCommand}"
                 FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.settings}" />
 
             <custom:FlatButton  x:Name="Graphs_BTN" Grid.Column="4"

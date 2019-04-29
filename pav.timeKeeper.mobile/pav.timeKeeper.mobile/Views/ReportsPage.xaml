@@ -1,19 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:pav.timeKeeper.mobile"
+             xmlns:core="clr-namespace:pav.timeKeeper.mobile.Core"
              x:Class="pav.timeKeeper.mobile.Views.ReportsPage"
              Visual="Material"
-             local:Bootstraper.AutoWireViewModel="True">
+             core:Bootstraper.AutoWireViewModel="True">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding ActionableTasks, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding }"
-                    </StackLayout>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <ListView ItemsSource="{Binding ActionableTasks, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                            <!--<Label Text="{Binding TimeSpan}"/>-->
+                        </StackLayout>
+                            </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

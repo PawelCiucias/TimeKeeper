@@ -19,7 +19,7 @@ namespace pav.timeKeeper.mobile.Models
             return true;
         }
 
-        protected void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
+        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
         {
             if (!String.IsNullOrEmpty(propertyName))
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

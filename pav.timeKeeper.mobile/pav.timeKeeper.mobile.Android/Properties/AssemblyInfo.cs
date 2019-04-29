@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+[assembly: Application(Icon = "@mipmap/icon")]
 [assembly: AssemblyTitle("pav.timeKeeper.mobile.Android")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

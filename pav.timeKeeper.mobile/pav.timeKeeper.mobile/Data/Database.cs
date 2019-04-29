@@ -21,6 +21,16 @@ namespace pav.timeKeeper.mobile.Data
             connection = new SQLiteAsyncConnection(databasePath); 
         }
 
+        public async  Task<bool> InitializeDatabaseAsync()
+        {
+            var dbpath = connection.DatabasePath;
+
+            await Task.Factory.StartNew(() => connection = new SQLiteAsyncConnection(dbpath));
+
+            return await Task.FromResult(connection != null);
+
+        }
+
         public async Task<bool> CreateProjectAsync(IProject project)
         {
            
@@ -94,5 +104,7 @@ namespace pav.timeKeeper.mobile.Data
 
             return null;
         }
+
+      
     }
 }

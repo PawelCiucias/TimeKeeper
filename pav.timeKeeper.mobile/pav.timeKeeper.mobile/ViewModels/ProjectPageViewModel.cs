@@ -90,7 +90,7 @@ namespace pav.timeKeeper.mobile.ViewModels
 
         public ProjectPageViewModel()
         {
-          repo=  Bootstraper.container.Resolve<IDataRepository>();
+            repo=  Core.Bootstraper.container.Resolve<IDataRepository>();
         }
     }
 }

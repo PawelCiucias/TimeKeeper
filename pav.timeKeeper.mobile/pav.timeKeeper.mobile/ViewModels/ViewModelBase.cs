@@ -14,7 +14,7 @@ namespace pav.timeKeeper.mobile.ViewModels
         protected INavigationService navigationService;
         
         public ViewModelBase() { 
-            navigationService = Bootstraper.container.Resolve<INavigationService>();
+            navigationService = Core.Bootstraper.container.Resolve<INavigationService>();
         }
 
         public virtual Task InitializeAsync(object navigationData) => Task.FromResult(false);

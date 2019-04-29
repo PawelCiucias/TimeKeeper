@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using Xamarin.Forms;
 
-namespace pav.timeKeeper.mobile
+namespace pav.timeKeeper.mobile.Core
 {
     internal static class Bootstraper
     {

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:pav.timeKeeper.mobile.Core"
+             x:Class="pav.timeKeeper.mobile.Views.SettingsPage"
+             core:Bootstraper.AutoWireViewModel="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Drop database" Command="{Binding DropDataBaseCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

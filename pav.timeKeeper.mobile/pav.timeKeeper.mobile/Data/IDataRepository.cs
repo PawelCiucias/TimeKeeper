@@ -20,5 +20,8 @@ namespace pav.timeKeeper.mobile.Data
         Task<bool> UpdateProjectAsync(IProject project);
         Task<bool> UpdateActionableTaskAsync(IActionableTask actionableTask);
         Task<bool> DeleteProjectAsync(Guid id);
+
+
+        Task<bool> InitializeDatabaseAsync();
     }
 }

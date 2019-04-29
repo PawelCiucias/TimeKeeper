@@ -13,13 +13,14 @@ namespace pav.timeKeeper.mobile.Models
         [PrimaryKey, Unique]
         public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
 
         public Guid TaskId { get; set; }
         public Guid ProjectId { get; set; }
         public int Year { get; set; } = DateTime.Now.Year;
         public int Day { get; set; } = DateTime.Now.DayOfYear;
-
+        
+        public TimeSpan? TimeSpan { get => End.HasValue ? End.Value.Subtract(Start) : new TimeSpan?(); }
         public ActionableTask() => this.Start = DateTime.Now;
 
         public ActionableTask(Guid projectId, Guid taskId) : this()

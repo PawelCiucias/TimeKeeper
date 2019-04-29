@@ -24,8 +24,8 @@ namespace pav.timeKeeper.mobile.Views
             {
                 var startColor = btn.TextColor;
                 await Task.WhenAll(
-                    btn.ColorTo(startColor, Color.White, c => btn.TextColor = c),
-                    btn.ColorTo(Color.White, startColor, c => btn.TextColor = c));
+                    btn.ColorTo(startColor, Color.White, c => btn.TextColor = c,100),
+                    btn.ColorTo(Color.White, startColor, c => btn.TextColor = c,100));
             }
         }
 
