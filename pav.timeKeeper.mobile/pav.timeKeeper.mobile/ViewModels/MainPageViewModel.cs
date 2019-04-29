@@ -26,11 +26,11 @@ namespace pav.timeKeeper.mobile.ViewModels
 
         public string SelectedClientName
         {
-            get => SelectedProject?.ClientName ?? "Select a project";
+            get => SelectedProject?.ClientName;
         }
         public string SelectedProjectName
         {
-            get => SelectedProject?.ProjectName;
+            get => SelectedProject?.ProjectName ?? (Projects?.Count > 0 ? "Select a project" : "Create a project");
         }
 
         int selectedIndex = -1;

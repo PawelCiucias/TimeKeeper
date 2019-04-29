@@ -105,6 +105,10 @@ namespace pav.timeKeeper.mobile.Data
             return null;
         }
 
-      
+        public async Task<bool> ClearActionableTasksAsync()
+        {
+            var result = await connection.DropTableAsync<ActionableTask>();
+            return true;
+        }
     }
 }

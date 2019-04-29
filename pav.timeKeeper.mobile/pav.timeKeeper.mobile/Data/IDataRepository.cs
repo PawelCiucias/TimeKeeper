@@ -23,5 +23,7 @@ namespace pav.timeKeeper.mobile.Data
 
 
         Task<bool> InitializeDatabaseAsync();
+
+        Task<bool> ClearActionableTasksAsync();
     }
 }

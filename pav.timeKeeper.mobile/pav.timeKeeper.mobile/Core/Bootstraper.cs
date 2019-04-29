@@ -24,6 +24,7 @@ namespace pav.timeKeeper.mobile.Core
             builder.RegisterType<NavigationService>().As<INavigationService>();
             builder.RegisterType<ProjectPageViewModel>().As<IProjectPageViewModel>();
             builder.RegisterType<ReportsPageViewModel>().As<IReportsPageViewModel>();
+            builder.RegisterType<SettingsPageViewModel>().As<ISettingsPageViewModel>();
 
             builder.RegisterType<Database>().As<IDataRepository>().SingleInstance().WithParameter(new TypedParameter(typeof(string), databasePath));
 

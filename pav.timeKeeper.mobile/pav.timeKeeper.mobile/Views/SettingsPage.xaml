@@ -7,6 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Drop database" Command="{Binding DropDataBaseCommand}"/>
+            <Button Text="Clear actionable tasks" Command="{Binding ClearActionableTasksCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -11,9 +11,10 @@ using pav.timeKeeper.mobile.Droid.Helpers;
 
 namespace pav.timeKeeper.mobile.Droid
 {
-    
 
-    [Activity(Label = "pav.timeKeeper.mobile", Icon = "@mipmap/icon", RoundIcon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, 
+    //    Icon = "@mipmap/launcher_foreground", RoundIcon = "@mipmap/launcher_foreground",
+    [Activity(Label = "Timekeeper", Theme = "@style/MainTheme", MainLauncher = false,
+              Icon = "@mipmap/ic_launcher",  RoundIcon = "@mipmap/ic_launcher",
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

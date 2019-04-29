@@ -11,5 +11,7 @@ namespace pav.timeKeeper.mobile.Models.Interfaces
         string ClientName { get; set; }
         string ProjectName { get; set; }
         IList<IProjectTask> Tasks { get; set; }
+
+        void Clear();
     }
 }

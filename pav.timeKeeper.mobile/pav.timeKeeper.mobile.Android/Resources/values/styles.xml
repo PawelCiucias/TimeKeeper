@@ -22,9 +22,9 @@
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
     <item name="android:actionBarSize">150dp</item>
-    <item name="android:statusBarColor">@color/splash_background</item>
-    <item name="android:navigationBarColor">@color/splash_background</item>
-    <!--<item name="android:navigationColor">@color/colorAccent</item>-->
+    <item name="android:statusBarColor">@color/launcher_background</item>
+    <item name="android:navigationBarColor">@color/launcher_background</item>
+    
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
     
   </style>
@@ -35,7 +35,7 @@
   </style>
 
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <!--<item name="android:windowBackground">@drawable/splash_screen</item>-->
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
   </style>

@@ -36,9 +36,9 @@
     <NavigationPage.TitleView>
         <Grid Padding="10,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -46,8 +46,8 @@
             </Grid.ColumnDefinitions>
 
 
-            <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large"/>
-            <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large"/>
+            <Label Grid.Row="0"  Text="{Binding SelectedClientName}" LineBreakMode="NoWrap" FontSize="Large" />
+            <Label Grid.Row="1" Text="{Binding SelectedProjectName}" LineBreakMode="NoWrap" FontSize="Large" />
 
             <!--<Label Grid.Row="2" Text="please select a task" FontSize="Large" TextColor="{StaticResource ContrastColor}" VerticalTextAlignment="Center" VerticalOptions="Fill" />-->
             <Picker x:Name="Task_DDL" Grid.Row="2" Title="Tasks"  IsVisible="{Binding SelectedProject, Converter={StaticResource NullToBooleanConverter}}"

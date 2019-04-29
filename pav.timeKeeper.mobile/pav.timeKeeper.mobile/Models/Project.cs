@@ -35,5 +35,12 @@ namespace pav.timeKeeper.mobile.Models
 
         public Project() => Tasks = new ObservableCollection<IProjectTask>();
 
+        public void Clear()
+        {
+            Id = Guid.NewGuid();
+            ClientName = string.Empty;
+            ProjectName = string.Empty;
+            Tasks.Clear();
+        }
     }
 }

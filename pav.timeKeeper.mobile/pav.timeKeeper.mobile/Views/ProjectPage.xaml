@@ -18,12 +18,20 @@
 
     </ContentPage.Resources>
 
+    <NavigationPage.HasBackButton>false</NavigationPage.HasBackButton>
     <NavigationPage.TitleView>
-        <Label Text="Create project" LineBreakMode="NoWrap"/>
+        <Grid Padding="10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Text="Create a project" FontSize="Large" LineBreakMode="NoWrap"/>
+        </Grid>
     </NavigationPage.TitleView>
-        <ContentPage.Content>
+    <ContentPage.Content>
 
-        <Grid>
+        <Grid x:Name="Content">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
@@ -32,18 +40,26 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
-            <Entry x:Name="ClientName_ENTRY" Placeholder="Client name" Text="{Binding ClientName}" ReturnType="Next" TabIndex="0"  Margin="10,5" />
-            <Entry x:Name="ProjectName_ENTRY" Placeholder="Project name" Text="{Binding ProjectName}" ReturnType="Next" TabIndex="1" Grid.Row="1" Margin="10,5" />
+            <Entry x:Name="ClientName_ENTRY" Placeholder="Client name" ReturnType="Next" TabIndex="0"  Margin="10,5"
+                   HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Source={x:Reference Content}, Path=Width}"
+                  Text="{Binding ClientName}" />
+            <Entry Grid.Row="1" x:Name="ProjectName_ENTRY"  Placeholder="Project name"  ReturnType="Next" TabIndex="1"  Margin="10, 5"
+                   HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Source={x:Reference Content}, Path=Width}"
+                   Text="{Binding ProjectName}" />
 
-            <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="10,5">
-                <Entry x:Name="TaskName_ENTRY" Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" TabIndex="2" HorizontalOptions="FillAndExpand" />
-                <Button Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" 
-                        BackgroundColor="{StaticResource ContrastColor}" 
-                        TextColor="{StaticResource Background}" 
-                        Command="{Binding AddTaskCommand}" />
+            <StackLayout Grid.Row="2" x:Name="TaskName_STACKLAYOUT" Orientation="Horizontal" Margin="10,5"
+                          HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Source={x:Reference Content}, Path=Width}">
+                <Entry x:Name="TaskName_ENTRY" HorizontalOptions="FillAndExpand" Placeholder="Task name" Text="{Binding TaskName, Mode=TwoWay}" 
+                       TabIndex="2" />
+                <Button
+                    Text="+" FontSize="Large" FontAttributes="Bold" WidthRequest="70" MinimumWidthRequest="0"
+                    BackgroundColor="{StaticResource ContrastColor}" 
+                    TextColor="{StaticResource Background}" 
+                    Command="{Binding AddTaskCommand}" />
             </StackLayout>
-            
-            <ListView Grid.Row="3" ItemsSource="{Binding Project.Tasks, Mode=TwoWay}" SelectionMode="None">
+
+            <ListView x:Name="Tasks_LISTVIEW" Grid.Row="3" ItemsSource="{Binding Project.Tasks, Mode=TwoWay}" SelectionMode="None"
+                      HorizontalOptions="CenterAndExpand" WidthRequest="{Binding Source={x:Reference Content}, Path=Width}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -65,7 +81,7 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-            <widgets:BottomAppBar Grid.Row="4" HeroSource="save.png" HeroCommand="{Binding SaveProjectCommand}" />
+            <widgets:BottomAppBar x:Name="BottomeAppBar" Grid.Row="4"  HeroSource="save.png" HeroCommand="{Binding SaveProjectCommand}"   />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

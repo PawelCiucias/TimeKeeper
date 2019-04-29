@@ -70,19 +70,14 @@ namespace pav.timeKeeper.mobile.ViewModels
 
         ICommand saveProjectCommand;
         public ICommand SaveProjectCommand {
-            get {
-
-                return this.saveProjectCommand ?? (this.saveProjectCommand = new Command(
+            get => this.saveProjectCommand ?? (this.saveProjectCommand = new Command(
                      execute: async () => {
-                         await repo.CreateProjectAsync(Project);
-                         await repo.CreateProjectTasksAsync(Project.Tasks);
+                          await repo.CreateProjectAsync(Project);
+                          await repo.CreateProjectTasksAsync(Project.Tasks);
+                          Project.Clear();
                      },
-                     canExecute: () =>
-!(String.IsNullOrEmpty(ClientName) || string.IsNullOrEmpty(ProjectName))
+                     canExecute: () =>  !(String.IsNullOrEmpty(ClientName) || string.IsNullOrEmpty(ProjectName))
                     ));
-
-                
-            }
         }
 
         ICommand deleteTaskCommand;

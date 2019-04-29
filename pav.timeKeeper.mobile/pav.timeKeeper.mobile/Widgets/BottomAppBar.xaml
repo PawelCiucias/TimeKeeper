@@ -19,6 +19,7 @@
 
             <BoxView Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}"/>
             <ImageButton x:Name="Hero_IMAGEBUTTON" 
+                         
                          Grid.Column="1" Grid.RowSpan="2" 
                          HorizontalOptions="Center" VerticalOptions="Center"
                          BackgroundColor="{StaticResource ContrastColor}"
@@ -42,10 +43,7 @@
                 </VisualStateManager.VisualStateGroups>
                 
             </ImageButton>
-            <Button Grid.Row="1" BorderWidth="0" BorderColor="Transparent" WidthRequest="50"  
-                    BackgroundColor="Transparent" HorizontalOptions="Start"
-                    effects:ShadowColorEffect.ShadowColor="Transparent"
-                    FontFamily="{StaticResource fontAwesomeSolid}" Text="{StaticResource awesome.settings}" />
+      
         </Grid>
   </ContentView.Content>
 </ContentView>
