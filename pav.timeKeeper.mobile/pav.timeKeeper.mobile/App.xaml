@@ -30,6 +30,8 @@
             <x:String x:Key="awesome.day">&#xf783;</x:String>
             <x:String x:Key="awesome.week">&#xf784;</x:String>
             <x:String x:Key="awesome.month">&#xf133;</x:String>
+            <x:String x:Key="awesome.edit">&#xf303;</x:String>
+            <x:String x:Key="awesome.list">&#xf03a;</x:String>
             
             
 

@@ -21,6 +21,7 @@ namespace pav.timeKeeper.mobile.Converters
                 vm.SelectedTaskIndex > -1)
             {
                 var selectedTaskId = vm.SelectedProject.Tasks[vm.SelectedTaskIndex].Id;
+                if(selectedTaskId == actionableTask.TaskId)
                 return pause;
             }
 

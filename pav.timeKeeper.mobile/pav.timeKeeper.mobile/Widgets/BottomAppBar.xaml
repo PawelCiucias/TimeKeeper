@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:pav.timeKeeper.mobile.Controls"
              xmlns:effects="clr-namespace:pav.timeKeeper.mobile.Effects"
              x:Class="pav.timeKeeper.mobile.Widgets.BottomAppBar">
+    <ContentView.Resources>
+        <Style TargetType="custom:FlatButton">
+            <Setter Property="FontFamily" Value="{StaticResource fontAwesomeSolid}"/>
+            <Setter Property="TextColor" Value="{StaticResource ContrastColor}"/>
+            <Setter Property="FontSize" Value="Large"/>
+        </Style>
+    </ContentView.Resources>
   <ContentView.Content>
+      
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -14,17 +23,37 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
 
-            <BoxView Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="{StaticResource BackgroundContrast}"/>
-            <ImageButton x:Name="Hero_IMAGEBUTTON" 
-                         
-                         Grid.Column="1" Grid.RowSpan="2" 
-                         HorizontalOptions="Center" VerticalOptions="Center"
-                         BackgroundColor="{StaticResource ContrastColor}"
-                         BorderColor="{StaticResource Background}" BorderWidth="1"
-                         CornerRadius="25" WidthRequest="50" HeightRequest="50">
+            <BoxView Grid.Row="1" Grid.ColumnSpan="5" BackgroundColor="{StaticResource BackgroundContrast}"/>
+            <!--button one-->
+            <custom:FlatButton x:Name="ButtonOne_FLATBUTTON" Grid.Row="1" VerticalOptions="Start"    />
+            
+            <!--button two-->
+            <custom:FlatButton x:Name="ButtonTwo_FLATBUTTON" Grid.Row="1" Grid.Column="1" VerticalOptions="Start"    />
+
+            <!--button three-->
+            <custom:FlatButton x:Name="ButtonThree_FLATBUTTON" Grid.Row="1" Grid.Column="3" VerticalOptions="End"    />
+
+            <!--button four-->
+            <custom:FlatButton x:Name="ButtonFour_FLATBUTTON" Grid.Row="1" Grid.Column="4" VerticalOptions="End"    />
+
+            <!--HeroButton-->
+            <BoxView Grid.Column="2" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center"   CornerRadius="25" WidthRequest="50" HeightRequest="50"
+                     BackgroundColor="{StaticResource BackgroundContrast}"/>
+            
+            <Button x:Name="Hero_BUTTON" Grid.Column="2" Grid.RowSpan="2"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="{StaticResource ContrastColor}"
+                    BorderColor="{StaticResource Background}" 
+                    FontFamily="{StaticResource fontAwesomeSolid}"
+                    FontSize="Large"
+                    TextColor="{StaticResource Background}"
+                    BorderWidth="1"
+                    CornerRadius="25" WidthRequest="50" HeightRequest="50">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
@@ -32,18 +61,16 @@
                                 <Setter Property="BackgroundColor" Value="{StaticResource ContrastColor}"/>
                             </VisualState.Setters>
                         </VisualState>
-                        
                         <VisualState x:Name="Disabled">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#3C311E"/>
-                                <Setter Property="Source" Value="disabledsave.png"/>
+                                <Setter Property="BackgroundColor" Value="#232323"/>
+                                <Setter Property="TextColor" Value="#FF9900" />
+                                <Setter Property="BorderColor" Value="Transparent" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
-                
-            </ImageButton>
-      
+            </Button>
         </Grid>
   </ContentView.Content>
 </ContentView>

@@ -35,11 +35,11 @@ namespace pav.timeKeeper.mobile.Views
 
             Settings_BTN.Clicked += Button_Clicked;
             Graphs_BTN.Clicked += Button_Clicked;
-            var pageVm = this.BindingContext as MainPageViewModel;
+            var vm = this.BindingContext as MainPageViewModel;
 
-            if (pageVm != null)
+            if (vm != null)
             {
-                await  pageVm.PopulateProjects();
+                await  vm.PopulateProjects();
             }
         }
 
@@ -49,6 +49,8 @@ namespace pav.timeKeeper.mobile.Views
             Settings_BTN.Clicked -= Button_Clicked;
             Graphs_BTN.Clicked -= Button_Clicked;
         }
+
+        
 
     }
 }

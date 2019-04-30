@@ -14,9 +14,12 @@ public class HighlightProjectConverter : IValueConverter
         
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var ProjectID = Guid.Parse(value.ToString());
-        var bc = ((ContentPage)parameter).BindingContext as MainPageViewModel;
-        return bc.ActiveTask?.ProjectId == ProjectID ? ContrastColor : NormalColor;
+         Guid projectId;
+
+         if(Guid.TryParse(value.ToString(), out projectId) && parameter is ContentPage page && page.BindingContext is MainPageViewModel bc)
+                return bc.ActiveTask?.ProjectId == projectId ? ContrastColor : NormalColor;
+
+        return NormalColor;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

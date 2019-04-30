@@ -34,23 +34,29 @@ namespace pav.timeKeeper.mobile.ViewModels
         }
 
         int selectedIndex = -1;
-        public int SelectedTaskIndex {
+        public int SelectedTaskIndex
+        {
             get => selectedIndex;
-            set {
+            set
+            {
                 base.SetProperty(ref selectedIndex, value);
                 ((Command)StartActiveProjectCommand).ChangeCanExecute();
+                base.NotifyPropertyChanged(nameof(this.ActiveTask));
             }
         }
 
 
-        public IList<string> SelectedTasks {
+        public IList<string> SelectedTasks
+        {
             get => SelectedProject?.Tasks.Select(t => t.Name).ToList();
         }
 
 
         ICommand createProjectCommand;
-        public ICommand CreateProjectCommand  {
-            get {
+        public ICommand CreateProjectCommand
+        {
+            get
+            {
                 createProjectCommand = createProjectCommand ??
                     new Command(async () => await base.navigationService.NavigateToAsync<ProjectPageViewModel>());
                 return createProjectCommand;
@@ -60,12 +66,14 @@ namespace pav.timeKeeper.mobile.ViewModels
         ICommand selectActiveProjectCommand;
         public ICommand SelectActiveProjectCommand
         {
-            get {
-                return (selectActiveProjectCommand = selectActiveProjectCommand ?? new Command(async()=> {
+            get
+            {
+                return (selectActiveProjectCommand = selectActiveProjectCommand ?? new Command(async () =>
+                {
 
                     var tasks = await repo.ReadProjectTasks(SelectedProject.Id);
 
-                    if(tasks != null)
+                    if (tasks != null)
                         SelectedProject.Tasks = tasks.ToList();
 
                     base.NotifyPropertyChanged(nameof(SelectedProject));
@@ -74,15 +82,16 @@ namespace pav.timeKeeper.mobile.ViewModels
                     base.NotifyPropertyChanged(nameof(SelectedTasks));
                     base.NotifyPropertyChanged(nameof(ActiveTask));
 
-                    if(ActiveTask?.ProjectId == SelectedProject.Id)
+                    if (ActiveTask?.ProjectId == SelectedProject.Id)
                     {
 
                         for (var index = 0; index < SelectedProject.Tasks.Count; index++)
-                            if (SelectedProject.Tasks[index].Id == ActiveTask.TaskId) {
+                            if (SelectedProject.Tasks[index].Id == ActiveTask.TaskId)
+                            {
                                 SelectedTaskIndex = index;
                                 return;
                             }
-                            
+
 
                     }
 
@@ -91,16 +100,18 @@ namespace pav.timeKeeper.mobile.ViewModels
         }
 
         ICommand startActiveProjectCommand;
-        public ICommand StartActiveProjectCommand {
-            get => startActiveProjectCommand = startActiveProjectCommand ?? 
+        public ICommand StartActiveProjectCommand
+        {
+            get => startActiveProjectCommand = startActiveProjectCommand ??
                 new Command(
-                    execute: async ()=> {
+                    execute: async () =>
+                    {
                         Guid? OldTaskId = ActiveTask?.ProjectId;
 
-                        if(ActiveTask != null)
+                        if (ActiveTask != null)
                         {
                             ActiveTask.End = DateTime.Now;
-                            await  repo.UpdateActionableTaskAsync(ActiveTask);
+                            await repo.UpdateActionableTaskAsync(ActiveTask);
                         }
 
                         if (Projects.FirstOrDefault(p => p.Id == SelectedProject.Id) is Project selectedProject)
@@ -115,16 +126,17 @@ namespace pav.timeKeeper.mobile.ViewModels
                             oldProject.NotifyPropertyChanged(nameof(IProject.Id));
                         }
 
+                        base.NotifyPropertyChanged(nameof(this.ActiveTask));
                         await repo.CreateActionableTaskAsync(ActiveTask);
-                    }, 
-                    canExecute: ()=> SelectedTaskIndex > -1);
+                    },
+                    canExecute: () => SelectedTaskIndex > -1);
         }
 
 
         private ICommand viewReportsCommand;
         public ICommand ViewReportsCommand
         {
-            get => viewReportsCommand = viewReportsCommand ?? new Command(async ()=>  await base.navigationService.NavigateToAsync<ReportsPageViewModel>());
+            get => viewReportsCommand = viewReportsCommand ?? new Command(async () => await base.navigationService.NavigateToAsync<ReportsPageViewModel>());
         }
 
         private ICommand settingsCommand;
@@ -138,15 +150,27 @@ namespace pav.timeKeeper.mobile.ViewModels
 
         public MainPageViewModel()
         {
-           repo = Core.Bootstraper.container.Resolve<IDataRepository>();
+            repo = Core.Bootstraper.container.Resolve<IDataRepository>();
         }
 
-        public async Task PopulateProjects() {
+        public async Task PopulateProjects()
+        {
+
 
             var projects = await repo.ReadProjectsAsync();
             if (projects != null)
             {
-                Projects = new ObservableCollection<IProject>(projects);
+                if (Projects == null)
+                {
+                    Projects = new ObservableCollection<IProject>(projects);
+                }
+                else
+                {
+                    var delta = projects.Where(p => !Projects.Contains(p)).ToList();
+                    if (delta.Count > 0)
+                        foreach (var p in delta)
+                            Projects.Add(p);
+                }
                 base.NotifyPropertyChanged(nameof(Projects));
             }
         }

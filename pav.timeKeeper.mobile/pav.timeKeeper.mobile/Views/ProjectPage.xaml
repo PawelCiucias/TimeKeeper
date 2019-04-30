@@ -81,7 +81,7 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-            <widgets:BottomAppBar x:Name="BottomeAppBar" Grid.Row="4"  HeroSource="save.png" HeroCommand="{Binding SaveProjectCommand}"   />
+            <widgets:BottomAppBar x:Name="BottomeAppBar" Grid.Row="4" HeroText="{StaticResource awesome.save}"  HeroCommand="{Binding SaveProjectCommand}"   />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -8,7 +8,7 @@ using System.Text;
 namespace pav.timeKeeper.mobile.Models
 {
     [Table("table_project")]
-    class Project : BaseModel, IProject
+    class Project : BaseModel, IProject, IEquatable<IProject>
     {
         [PrimaryKey, Unique]
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -42,5 +42,7 @@ namespace pav.timeKeeper.mobile.Models
             ProjectName = string.Empty;
             Tasks.Clear();
         }
+
+        public bool Equals(IProject other) => this.Id == other.Id;
     }
 }

@@ -76,7 +76,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-<CollectionView Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource ="{Binding Projects}" SelectionMode="Single" 
+<CollectionView x:Name="Projects_COLLECTIONVIEW"
+    Grid.ColumnSpan="3" Grid.RowSpan="2" ItemsSource ="{Binding Projects}" SelectionMode="Single" 
             SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
             SelectionChangedCommand="{Binding SelectActiveProjectCommand}"   >
     <CollectionView.ItemsLayout>

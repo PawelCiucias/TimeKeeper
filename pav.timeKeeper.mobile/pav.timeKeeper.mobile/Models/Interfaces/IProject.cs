@@ -5,7 +5,7 @@ using System.Text;
 
 namespace pav.timeKeeper.mobile.Models.Interfaces
 {
-    interface IProject
+    interface IProject : IEquatable<IProject>
     {
         Guid Id { get; }
         string ClientName { get; set; }
