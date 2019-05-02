@@ -6,18 +6,16 @@ using Xamarin.Forms;
 
 namespace pav.timeKeeper.mobile.Converters
 {
-    class NullToVisibilityConverter : IValueConverter
+    class DateTimeToDateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string str)
-                return !String.IsNullOrEmpty(str);
-
-            var dt = value as DateTime?;
-            if(dt  == null)
-                return value != null;
-
-            return dt.HasValue;
+            if (value is DateTime dt) {
+                if(parameter is string)
+                    return dt.ToString(parameter.ToString());
+                return dt.ToString();
+            }
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

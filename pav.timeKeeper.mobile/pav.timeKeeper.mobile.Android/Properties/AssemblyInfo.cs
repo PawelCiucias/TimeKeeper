@@ -17,7 +17,7 @@ using Xamarin.Forms.Xaml;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-
+[assembly: InternalsVisibleTo("pav.timeKeeper.tests")]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version

@@ -30,7 +30,7 @@
 
             <BoxView Grid.Row="1" Grid.ColumnSpan="5" BackgroundColor="{StaticResource BackgroundContrast}"/>
             <!--button one-->
-            <custom:FlatButton x:Name="ButtonOne_FLATBUTTON" Grid.Row="1" VerticalOptions="Start"    />
+            <custom:FlatButton x:Name="ButtonOne_FLATBUTTON" Grid.Row="1" VerticalOptions="Start" />
             
             <!--button two-->
             <custom:FlatButton x:Name="ButtonTwo_FLATBUTTON" Grid.Row="1" Grid.Column="1" VerticalOptions="Start"    />

@@ -3,10 +3,12 @@ using pav.timeKeeper.mobile.Models.Interfaces;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace pav.timeKeeper.mobile.Models
 {
+    [DebuggerDisplay("{DebuggerDisplay()}")]
     [Table(nameof(Constants.table_ActionableTask))]
     class ActionableTask : BaseModel, IActionableTask
     {
@@ -32,5 +34,7 @@ namespace pav.timeKeeper.mobile.Models
         {
             
         }
+
+        private string DebuggerDisplay() => $"{Id.ToString()}";
     }
 }

@@ -2,14 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:core="clr-namespace:pav.timeKeeper.mobile.Core"
+             xmlns:converters="clr-namespace:pav.timeKeeper.mobile.Converters"
              xmlns:widgets="clr-namespace:pav.timeKeeper.mobile.Widgets"
              x:Class="pav.timeKeeper.mobile.Views.ReportsPage"
              Visual="Material"
              
              core:Bootstraper.AutoWireViewModel="True">
+    <ContentPage.Resources>
+        <converters:NullToVisibilityConverter x:Key="NullToVisiblityConverter" />
+        <converters:NullableDateTimeToDateTime x:Key="NullableDateTimeToDateTime" />
+        
+        <Style TargetType="DatePicker">
+            <Setter Property="BackgroundColor" Value="{StaticResource BackgroundContrast}" />
+            <Setter Property="TextColor" Value="{StaticResource ContrastColor}"/>
+        </Style>
+    </ContentPage.Resources>
     <NavigationPage.HasBackButton>false</NavigationPage.HasBackButton>
     <NavigationPage.TitleView>
-        
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -18,41 +28,45 @@
             </Grid.RowDefinitions>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            <DatePicker HorizontalOptions="Center" Date="{Binding StartDate, Mode=TwoWay}" />
-                <DatePicker HorizontalOptions="Center" />
+                <DatePicker HorizontalOptions="Center" Date="{Binding StartDate, Mode=TwoWay}" />
+                <DatePicker HorizontalOptions="Center" 
+                            Date="{Binding EndDate, Mode=TwoWay, Converter={StaticResource NullableDateTimeToDateTime}}" 
+                            IsVisible="{Binding EndDate, Converter={StaticResource NullToVisiblityConverter}}" />
             </StackLayout>
         </Grid>
 
     </NavigationPage.TitleView>
-    
+
     <ContentPage.Content>
-       
-            <Grid>
+
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <ListView ItemsSource="{Binding ActionableTasks, Mode=TwoWay}">
+            <ListView Grid.RowSpan="2" ItemsSource="{Binding ActionableTasks, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                            <!--<Label Text="{Binding TimeSpan}"/>-->
-                        </StackLayout>
-                            </ViewCell>
+                                <Label Text="sdf"/>
+                                <Label Text="{Binding Start, StringFormat='{}{0:MMMM d}'}"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <widgets:BottomAppBar Grid.Row="1" 
+
+            <widgets:BottomAppBar Grid.Row="1" Grid.RowSpan="2" 
                                   ButtonOneText="{StaticResource awesome.day}" ButtonOneCommand="{Binding CurrentDayCommand}"
-                                  
-                                  ButtonTwoText="{StaticResource awesome.week}"
+                                  ButtonTwoText="{StaticResource awesome.week}" ButtonTwoCommand="{Binding CurrentWeekCommand}"
                                   HeroText="{StaticResource awesome.edit}"
-                                  ButtonThreeText="{StaticResource awesome.month}" 
+                                  ButtonThreeText="{StaticResource awesome.month}" ButtonThreeCommand="{Binding CurrentMonthCommand}" 
                                   ButtonFourText="{StaticResource awesome.list}"
-                                  AreButtonToggle="True" />
+                                  DoButtonsToggle="True" />
         </Grid>
-      
+
     </ContentPage.Content>
 </ContentPage>

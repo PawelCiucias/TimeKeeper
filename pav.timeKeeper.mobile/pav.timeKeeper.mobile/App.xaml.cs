@@ -6,7 +6,9 @@ using Xamarin.Forms.Xaml;
 using pav.timeKeeper.mobile.Views;
 using System.Threading.Tasks;
 using pav.timeKeeper.mobile.Services.Interfaces;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("pav.timeKeeper.tests")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace pav.timeKeeper.mobile
 {
@@ -14,7 +16,6 @@ namespace pav.timeKeeper.mobile
     {
         public App(string databasePath)
         {
-         
             InitializeComponent();
             Core.Bootstraper.Intit(databasePath);
         }
